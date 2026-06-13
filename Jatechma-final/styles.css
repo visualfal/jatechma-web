@@ -51,6 +51,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -60,6 +61,7 @@ body {
   font-family: "Plus Jakarta Sans", Arial, sans-serif;
   font-size: var(--body-lg);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 img {
@@ -115,7 +117,7 @@ h3 {
 }
 
 .brand-logo {
-  display: block;
+  display: flex;
   max-width: 180px;
   width: auto;
   height: auto;
@@ -397,7 +399,7 @@ h3 {
 .stats strong {
   display: block;
   color: var(--foundation-blue-normal);
-  font-size: var(--heading-md);
+  font-size: var(--heading-xxl);
   line-height: 1.2;
 }
 
@@ -577,11 +579,16 @@ h3 {
   gap: 24px;
 }
 
-.partner-label {
-  color: var(--foundation-grey-normal);
-  font-size: var(--body-md);
+.partner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
+.partner-label {
+  color: var(--foundation-blue-normal);
+  font-size: var(--eyebrow-md);
+}
 .powered-by {
   display: flex;
   flex-direction: column;
@@ -811,7 +818,7 @@ h3 {
   background-position: center;
   background-size: contain;
   pointer-events: none;
-  transform: translateY(-50%);
+  transform: translateY(-80%);
   opacity: 0.5;
 }
 
@@ -872,6 +879,10 @@ h3 {
   background-position: center;
   background-size: contain;
   pointer-events: none;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
 }
 
 .quote-mark-left {
@@ -1027,6 +1038,8 @@ h3 {
 }
 
 .cta-inner {
+  width: min(calc(100% - 40px), var(--container));
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1034,6 +1047,7 @@ h3 {
 }
 
 .cta-actions {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1041,6 +1055,7 @@ h3 {
 }
 
 .cta-card .button {
+  width: 100%;
   font-weight: 600;
   border-radius: 10px;
   padding: 16px 22px;
@@ -1051,12 +1066,14 @@ h3 {
 }
 
 .button.whatsapp {
+  width: 100%;
   background: rgba(255,255,255,0.95);
   color: var(--foundation-blue-dark);
   border: none;
 }
 
 .button.tokopedia {
+  width: 100%;
   background: transparent;
   color: var(--white);
   border: 2px solid rgba(255,255,255,0.28);
@@ -1178,6 +1195,28 @@ h3 {
     justify-self: center;
   }
 
+  .partner {
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-end;
+  }
+
+  .partner-label {
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-end;
+    
+  color: var(--foundation-blue-normal);
+  font-size: var(--eyebrow-md);
+  }
+
+  .partner-logo {
+    height: auto;
+    width: 100px;
+  }
+
   .cta-inner {
     align-items: flex-start;
     flex-direction: column;
@@ -1206,7 +1245,7 @@ h3 {
   }
 
   .testimonials-heading h2 {
-    font-size: var(--heading-lg);
+    font-size: var(--heading-xl);
   }
 
   .testimonial-slide blockquote {
@@ -1222,6 +1261,7 @@ h3 {
 @media (max-width: 640px) {
   .container {
     width: min(calc(100% - 28px), var(--container));
+    align-items: flex-start;
   }
 
   .nav {
@@ -1231,14 +1271,20 @@ h3 {
   .hero-content {
     min-height: calc(100svh - 88px);
     padding-block: 54px;
+    context-align: left;
+  }
+  .hero-brand-logo {
+    max-width: 140px;
   }
 
   .hero h1 {
     font-size: 38px;
+    text-align: left;
   }
 
   .hero-copy {
     font-size: var(--body-lg);
+    text-align: left;
   }
 
   .hero-actions {
@@ -1287,6 +1333,9 @@ h3 {
   .stats-grid {
     grid-template-columns: 1fr;
   }
+  .stats strong {
+    font-size: var(--heading-xl);
+  }
 
   .stats article,
   .stats article:first-child,
@@ -1307,7 +1356,7 @@ h3 {
   }
 
   .section-heading h2 {
-    font-size: var(--heading-md);
+    font-size: var(--heading-lg);
   }
 
   .service-grid,
@@ -1323,7 +1372,17 @@ h3 {
   }
 
   .service-visual {
-    height: 180px;
+    height: 240px;
+  }
+
+  .service-card h3 {
+    font-size: var(--bold-xl);
+    margin: 0 16px 8px;
+  }
+
+
+  .service-card p {
+    margin: 0 16px 16px;
   }
 
   .heading-row {
@@ -1335,8 +1394,8 @@ h3 {
   .product-grid {
     display: flex;
     overflow-x: auto;
-    gap: 20px;
-    padding-inline-end: 20px;
+    gap: 12px;
+    padding-inline-end: 16px;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 20px;
     scrollbar-width: none;
@@ -1350,10 +1409,13 @@ h3 {
     flex: 0 0 min(86vw, 340px);
     scroll-snap-align: start;
   }
+  .benefit-grid h3 {
+    font-size: var(--bold-xl);
+  }
 
   .benefit-grid article {
     min-height: auto;
-    padding: 20px;
+    padding: 16px;
   }
 
   .trusted-brands {
@@ -1372,7 +1434,7 @@ h3 {
 
   .trusted-brands-heading h2 {
     max-width: 80%;
-    font-size: var(--heading-md);
+    font-size: var(--heading-lg);
     margin-inline: auto;
   }
 
@@ -1407,20 +1469,26 @@ h3 {
   .testimonials-grid {
     grid-template-columns: 1fr;
     gap: 38px;
+    padding: 0 16px;
+  }
+
+  .testimonials-heading .eyebrow {
+    text-align: left;
+    font-size: var(--eyebrow-md);
   }
 
   .testimonials-heading {
     padding-top: 0;
-    text-align: center;
+    text-align: left;
   }
 
   .testimonials-heading h2 {
     max-width: 100%;
-    font-size: var(--heading-md);
+    font-size: var(--heading-lg);
   }
 
   .testimonial-author {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 10px;
   }
 
@@ -1429,8 +1497,8 @@ h3 {
   }
 
   .testimonial-stars {
-    width: 100%;
-    padding-left: 54px;
+    width: auto;
+    padding-left: 0;
     font-size: 18px;
   }
 
@@ -1439,7 +1507,7 @@ h3 {
   }
 
   .testimonial-controls {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .testimonial-dots {
@@ -1478,8 +1546,95 @@ h3 {
   }
 
   .cta-section h2 {
-    font-size: var(--heading-md);
+    text-align: left;
+    font-size: var(--heading-lg);
+    padding: 0 16px;
   }
+
+  .cta-logo {
+    max-width: 180px;
+    padding: 0 16px;
+  }
+
+  .cta-section {
+  padding: 16px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  }
+
+  .cta-card {
+  display: flex;
+  flex-direction: column-reverse;
+
+  background: var(--foundation-blue-dark);
+  background-image: url("assets/wave-line.svg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 240%;
+
+  height: 100%;
+  color: var(--white);
+  border: 6px var(--foundation-blue-light-active) solid;
+  border-radius: 12px;
+  padding: 16px 0 16px;
+  }
+
+  .cta-inner {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 40px;
+  padding: 0px;
+  width: 100%;
+  }
+
+  .cta-actions {
+  align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 20px;
+  width: 100%;
+  }
+
+  .cta-card .button {
+    align-self: stretch;
+    width: 100%;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 16px 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .button.whatsapp {
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    color: var(--foundation-blue-dark);
+    border: none;
+  }
+
+  .button.tokopedia {
+    width: 100%;
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.28);
+  }
+
+  .cta-card .store-icon {
+    width: 26px;
+    height: auto;
+    margin-right: 8px;
+  }
+
+
+
 
   .button-light {
     width: 100%;
